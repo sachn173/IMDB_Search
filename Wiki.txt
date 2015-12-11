@@ -1,0 +1,39 @@
+	WorkFlow of IMDB_Search_Web_app
+	
+	
+	Architecture: (follow MVC) :
+
+		Model      -  Actor.java , Movie.java , Review.java , IMDB_Search_performer.java
+		view       -  index.jsp , search_result.jsp , error.jsp
+		controller -  IMDB_Search_Controller.java
+	
+	1. User will first land on index.jsp where he is greeted with one search_box and search_button
+	
+	2. User will fill actor_name in search_box and submit the request to controller(IMDB_Search_Controller.java).
+	
+	3. Now controller have actor_name in request, it will just call the search method of (IMDB_Search_performer.java)
+	   with that actor_name as a parameter.
+	
+	4. Inside search method of IMDB_Search_performer.java :
+	
+		a.) first, it will trim the leading and trailing spaces of requested actor_name(as user might insert extra spaces).
+		b.) then, it will search that actor_name on imdb.
+		c.) if actor_name is not legitimate, then it will return null to controller.
+		d.) else if actor_name is legitimate, then it will extract unique actor_id for visiting its movies page.
+		e.) then, it will visit actor's movie page where only movies(excludes tv serials..etc) are listed sorted in descending order of rating.  
+		f.) extracts top 3 movies with their links to visit them.
+		g.) then, visit each movie_link(in top 3 movies_list) to find out movie_name,year of release,it's runtime,it's image_link,its rating and other info.
+		h.) then for each movie_link(in top 3 movies_list), it will first form movie_review_link and then visit those links,
+			and extracts top 3 reviews with their author,title and description in descending order of people_votes.
+		i.)	finally, it will fill one actor object...with following informations extracted above:
+			(actor_name,top 3 movies )
+			(each movie_object have their description{movie_name,year,runtime,genres,rating,movie_link,movie_image_link} and top 3 reviews)
+			(each review_object have their title,author_info,and it's description)
+		j.)then, it will return that actor object to controller.
+		
+	5. Now controller have search result in actor object....if this is null(means no actor found with searched_name) 
+	   then it will redirect to error.jsp....which as of now just display "not found"..
+	   if actor_object is not null..then it will redirect to search_result.jsp(with that actor object)..
+	   this page(search_result.jsp) will show the desired result in tabular_format.
+	   
+Note: "for visiting any page if url is given..and parsing that page...JAUNT(a web scrapper) has been used in this project"

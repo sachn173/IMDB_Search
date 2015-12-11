@@ -1,0 +1,33 @@
+Instruction for setting up IMDB_Search_Controller Web-app Locally on WINDOWS 64-BIT MACHINE:
+
+Steps :
+
+	1. Install JDK and JRE from oracle website
+
+	2. Install Apache Tomcat Server 8.0 
+		
+		- Download zip from (http://www.us.apache.org/dist/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30-windows-x64.zip)
+		(this zip can also be found in IMDB_Search.zip)
+		
+		- Extract this tomcat zip to c:\Program Files
+		
+		- Set Three User Environment Variables mentioned below :
+			
+			a.) CATALINA_HOME  --- path to tomcat installation directory(eg: D:\ProgranFiles\apache-tomcat-8.0.30)
+			b.) JAVA_HOME      --- path to JDK installation directory (eg: C:\Program Files\Java\jdk1.8.0_60)
+			c.) JRE_HOME       --- path to JRE installation directory
+			
+	3. 	Unzip IMDB_Search.zip and goto (\IMDB_Search\IMDB_Search1\out\artifacts\IMDB_Search1_war) and copy IMDB_Search1_war.war
+
+	4.	copy IMDB_Search1_war.war to (\tomcat-installation-path\webapps)
+	
+	5.	Start the tomcat server by executing following command in cmd :
+	
+		- %CATALINA_HOME%\bin\startup.bat (this will deploy the project on tomcat server...)
+		
+	6.	Now open any browser(Mozilla)...and access (http://localhost:8080/IMDB_Search1_war/)
+	
+		
+Note :
+
+	To stop tomcat after testing of web-app execute (%CATALINA_HOME%\bin\shutdown.bat) in cmd.
